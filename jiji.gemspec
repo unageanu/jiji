@@ -1,6 +1,6 @@
 Gem::Specification.new do |spec|
   spec.name = "jiji"
-  spec.version = "1.2.0"
+  spec.version = "1.2.1"
   spec.summary = "open and free fx auto trade system."
   spec.author = "Masaya Yamauchi"
   spec.email = "y-masaya@red.hot.co.jp"
@@ -608,7 +608,6 @@ Gem::Specification.new do |spec|
     "test/plugin/test_gem/a/jiji_plugin_test_gem_a-1.0.0.gem",
     "test/plugin/test_gem/a/jiji_plugin_test_gem_a.gemspec",
     "test/plugin/test_gem/a/lib/jiji_plugin.rb",
-    "test/plugin/test_gem/a/lib/jiji_plugin_test.rb",
     "test/plugin/test_gem/b/jiji_plugin_test_gem_b-1.0.0.gem",
     "test/plugin/test_gem/b/jiji_plugin_test_gem_b.gemspec",
     "test/plugin/test_gem/b/lib/jiji_plugin.rb",
@@ -739,7 +738,6 @@ Gem::Specification.new do |spec|
     "test/plugin/test_gem/a/jiji_plugin_test_gem_a-1.0.0.gem",
     "test/plugin/test_gem/a/jiji_plugin_test_gem_a.gemspec",
     "test/plugin/test_gem/a/lib/jiji_plugin.rb",
-    "test/plugin/test_gem/a/lib/jiji_plugin_test.rb",
     "test/plugin/test_gem/b/jiji_plugin_test_gem_b-1.0.0.gem",
     "test/plugin/test_gem/b/jiji_plugin_test_gem_b.gemspec",
     "test/plugin/test_gem/b/lib/jiji_plugin.rb",
