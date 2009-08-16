@@ -1,0 +1,8 @@
+--- 
+name: "\xE7\xA7\xBB\xE5\x8B\x95\xE5\xB9\xB3\xE5\x9D\x87\xE7\xB7\x9A"
+:column_count: 2
+:graph_type: :rate
+type: graph
+:colors: 
+- "#779999"
+- "#557777"

@@ -1,0 +1,6 @@
+---
+:securities:
+  :type: mock
+
+:collector:
+  collect: false

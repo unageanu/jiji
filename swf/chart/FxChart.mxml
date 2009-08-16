@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+  layout="absolute" applicationComplete="main()" >
+
+  <mx:Canvas id="canvas" width="780" height="450" backgroundColor="#E8E8E8" >
+  </mx:Canvas>
+  <mx:Script>
+      <![CDATA[
+          import fx.chart.*;
+          // メイン
+          public function main():void {
+              new Chart(canvas);
+          }
+      ]]>
+  </mx:Script>
+
+</mx:Application>

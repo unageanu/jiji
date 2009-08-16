@@ -1,0 +1,9 @@
+<flex-config>
+  <output>bin/Chart.swf</output>
+  <default-size>
+    <width>780</width>
+    <height>450</height>
+  </default-size>
+  <default-frame-rate>24</default-frame-rate>
+  <default-background-color>0xE8E8E8</default-background-color>
+</flex-config>

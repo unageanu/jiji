@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="fx-swf-build" default="build.chart" basedir=".">
+  
+  <property name="dist.dir" value="../html/swf" />
+
+  <property name="FLEX_HOME" value="../../tool/flex_sdk" />
+  <taskdef resource="flexTasks.tasks" />
+ 
+  <target name="build.chart" depends="clean">
+    <mxmlc file="chart/FxChart.mxml"
+    	     debug="true"
+           output="${dist.dir}/chart.swf">
+    	<compiler.library-path dir="." append="true">
+    		<include name="lib" />
+      </compiler.library-path>
+    </mxmlc>
+  </target>
+
+  <target name="clean">
+    <delete file="${dist.dir}/chart.swf" />
+  </target>
+
+</project>

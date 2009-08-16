@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <!-- 
+    <script type='text/javascript' 
+        src='http://getfirebug.com/releases/lite/1.2/firebug-lite-compressed.js'></script>
+     -->
+    <link rel="stylesheet" href="css/default.css" type="text/css"/>
+    <link rel="stylesheet" href="css/calendar.css" type="text/css"/>
+    <link rel="stylesheet" href="css/datatable.css" type="text/css"/>
+    <link rel="stylesheet" href="css/dialog.css" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.7.0/build/container/assets/skins/samzz/container.css" />
+
+    <script type="text/javascript" src="http://yui.yahooapis.com/2.7.0/build/yahoo/yahoo-min.js" ></script>
+    <script type="text/javascript" src="http://yui.yahooapis.com/2.7.0/build/event/event.js" ></script>
+    <script type="text/javascript" src="http://yui.yahooapis.com/2.7.0/build/connection/connection-min.js"></script>
+    <script type="text/javascript" src="http://yui.yahooapis.com/2.7.0/build/json/json-min.js"></script>
+
+    <link type="text/css" rel="stylesheet" href="http://yui.yahooapis.com/2.7.0/build/datatable/assets/skins/sam/datatable.css" />
+    <script type="text/javascript" src="http://yui.yahooapis.com/2.7.0/build/yahoo-dom-event/yahoo-dom-event.js"></script>
+    <script type="text/javascript" src="http://yui.yahooapis.com/2.7.0/build/element/element-min.js"></script>
+    <script type="text/javascript" src="http://yui.yahooapis.com/2.7.0/build/datasource/datasource-min.js"></script>
+    <script type="text/javascript" src="http://yui.yahooapis.com/2.7.0/build/dragdrop/dragdrop-min.js"></script>
+    <script type="text/javascript" src="http://yui.yahooapis.com/2.7.0/build/calendar/calendar-min.js"></script>
+    <script type="text/javascript" src="http://yui.yahooapis.com/2.7.0/build/datatable/datatable.js"></script>
+    <script type="text/javascript" src="http://yui.yahooapis.com/2.7.0/build/container/container-min.js"></script>
+
+    <link type="text/css" rel="stylesheet"  href="css/treeview.css"/>
+    <script type="text/javascript" src="./js/yui/treeview.js" ></script>
+    
+    <script language="javascript" type="text/javascript" src="./js/edit_area/edit_area_loader.js"></script>
+    
+    <script type="text/javascript" src="./js/uuid.js"></script>
+    <script type="text/javascript" src="./js/prototype.js"></script>
+
+    <script type="text/javascript" src="./js/container.js"></script>
+    <script type="text/javascript" src="./js/container-utils.js"></script>
+    <script type="text/javascript" src="./js/utils.js"></script>
+
+    <script type="text/javascript" src="./js/json-broker-client.js"></script>
+    <script type="text/javascript" src="./js/templates.js"></script>
+
+    <script type="text/javascript" src="./js/page-manager.js"></script>
+    <script type="text/javascript" src="./js/agent-editor/agent-editor-page.js"></script>
+    <script type="text/javascript" src="./js/agent-editor/agent-editor.js"></script>
+    <script type="text/javascript" src="./js/agent-editor/agent-list-tree.js"></script>
+    <script type="text/javascript" src="./js/rt-setting-page.js"></script>
+    <script type="text/javascript" src="./js/bt-create-page.js"></script>
+    <script type="text/javascript" src="./js/result-page.js"></script>
+
+    <script type="text/javascript" src="./js/sidebar.js"></script>
+    <script type="text/javascript" src="./js/dialog.js"></script>
+    <script type="text/javascript" src="./js/agent-selector.js"></script>
+    <script type="text/javascript" src="./js/app.js"></script>
+    <title>jiji</title>
+  </head>
+  <body  onload="fx.initialize();">
+  <div id="content">
+    <div id="margin_top">
+      <!-- 背景の陰のグラデーションを張るスペース -->
+    </div>
+    <div id="main">
+      <!-- 本文 -->
+      <div id="hesder">
+        <!-- ロゴとメッセージ表示領域 -->
+        <div style="float:right;margin:10px 20px 0px 0px;">
+          <img id="head_trade_enable" src="./img/auto_trade_off.gif"  alt="自動取引" title="自動取引" />
+        </div>
+      </div>
+      <div id="body">
+        <div id="left">
+          <!-- メニュー -->
+          <div class="menu-container">
+	          <div class="menu-1"><img src="./img/sidebar_rt.png"  alt="リアルトレード" title="リアルトレード" /></div>
+	          <div class="menu-2 menu" id="sidebar_result_rmt" alt="状態を見る" style="width:178px"></div>
+	          <div class="menu-2 menu" id="sidebar_rt_setting" alt="設定" style="width:178px"></div>
+          </div>
+
+          <div class="menu-container">
+	          <div class="menu-1"><img src="./img/sidebar_agent.png"  alt="エージェント" title="エージェント" /></div>
+	          <div class="menu-2 menu" id="sidebar_agent_edit" alt="作成 / 編集" style="width:178px">
+          </div>
+          </div>
+
+          <div class="menu-container">
+            <div class="menu-1"><img src="./img/sidebar_bt.png"  alt="バックテスト" title="バックテスト" /></div>
+            <div class="menu-2 menu" id="sidebar_bt_create"  alt="新規作成"  style="width:178px">
+            </div>
+            <div class="menu-2">
+              <img src="./img/sidebar_bt_result.png"  alt="テスト結果をみる" title="テスト結果をみる"  style="width:178px"/>
+              <div id="back-tests" style="margin-top:5px;">
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div id="right" >
+
+           <ul id="topic_path">
+           </ul>
+
+          <div id="page-result"  class="page" >
+            <div class="panel_780"  style="margin-left:10px;">
+             <div class="panel_top"></div>
+             <div class="panel_middle"  style="padding-left:10px;">
+               <div>
+                  <!-- swf -->
+                    <object id='chart'
+                      classid='clsid:D27CDB6E-AE6D-11cf-96B8-444553540000'
+                      codebase='http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0'
+                      height='450px' width='780px'>
+                      <param name='src' value='/swf/chart.swf'/>
+                      <param name='flashVars' value=''/>
+                      <param name='scale' value='noscale'/>
+                      <embed name='chart' src='./swf/chart.swf'
+                          pluginspage='http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash'
+                          height='450px' width='780px' scale="noscale" flashVars=''/>
+                    </object>
+               </div>
+             </div>
+             <div class="panel_bottom"></div>
+            </div>
+
+            <div class="panel_140_660"  style="background-position:  -1px 0px;">
+             <div class="panel_top"></div>
+             <div class="panel_middle" >
+                <div style="float:left;width:140px;margin-left: 1px:width:140px;margin-top: 20px;"  id="submenu" >
+                    <div class="submenu" id="submenu_trade"  alt="取引結果"  ></div>
+                    <div class="submenu" id="submenu_info"  alt="設定を見る"  ></div>
+                    <div class="submenu" id="submenu_log"  alt="ログ"  ></div>
+
+                    <div class="separator" style="width:120px;margin-left:10px;"></div>
+
+                    <div class="submenu" id="submenu_graph"  alt="グラフの表示設定"  ></div>
+                </div>
+                <div style="float:right;margin: 20px 20px 20px 0px;width:640px;"  >
+                    <div class="page" id="subpage-trade" >
+                      <div style="margin-left:10px;">
+                        <div style="width:620px;">
+                          <div id="subpage-trade_ctrl" >
+                            <div id="subpage-trade__update"  class="button" style="float:right;margin-right:0px;" ></div>
+                            <div id="subpage-trade__range"  style="float:right;margin-right:10px;height:25px:line-height:25px;vertical-align: middle;">
+                               <input type="text"  alt="表示する一覧の範囲-年"  id="subpage-trade_range-year"
+                                      name="subpage-trade_range-year"  style="display:inline;width:35px;" />
+                               年
+                               <input type="text"  alt="表示する一覧の範囲-月"  id="subpage-trade_range-month"
+                                      name="subpage-trade_range-month"  style="display:inline;width:20px;" />
+                               月
+                                <input type="text"  alt="表示する一覧の範囲-日"  id="subpage-trade_range-day"
+                                      name="subpage-trade_range-month"  style="display:inline;width:20px;" />
+                               日 ～
+                                <input type="text"  alt="表示する一覧の範囲-年"  id="subpage-trade_range-end-year"
+                                      name="subpage-trade_range-year"  style="display:inline;width:35px;" />
+                               年
+                               <input type="text"  alt="表示する一覧の範囲-月"  id="subpage-trade_range-end-month"
+                                      name="subpage-trade_range-month"  style="display:inline;width:20px;" />
+                               月
+                                <input type="text"  alt="表示する一覧の範囲-日"  id="subpage-trade_range-end-day"
+                                      name="subpage-trade_range-month"  style="display:inline;width:20px;" />
+                               日
+                               のデータを表示
+                            </div>
+                            <div class="breaker"></div>
+                          </div>
+                          <div class="separator" style="width:620px;"></div>
+                          <div><img src="./img/h3_result_0.gif"  alt="統計" title="統計" /></div>
+                          <div class="wl" style="width:620px;"></div>
+                          <div id="subpage-trade_summary" >
+                          </div>
+                        </div>
+                      </div>
+                      <div style="margin-left:10px;">
+                        <div style="width:620px;">
+                          <div style="margin-top:20px;"><img src="./img/h3_result_1.gif"  alt="エージェントごとの統計" title="エージェントごとの統計" /></div>
+                          <div class="wl" style="width:620px;"></div>
+                        </div>
+                      </div>
+                      <div class="panel_620" >
+                        <div class="panel_top"></div>
+                        <div class="panel_middle"  style="padding-left:10px;">
+                          <div id="subpage-trade__agent-list"></div>
+                        </div>
+                        <div class="panel_bottom"></div>
+                      </div>
+                      <div style="margin-left:10px;">
+                        <div style="width:620px;">
+                          <div style="margin-top:20px;"><img src="./img/h3_result_2.gif"  alt="取引一覧" title="取引一覧" /></div>
+                          <div class="wl" style="width:620px;"></div>
+                        </div>
+                      </div>
+                      <div class="panel_620" >
+                        <div class="panel_top"></div>
+                        <div class="panel_middle"  style="padding-left:10px;">
+                          <div id="subpage-trade__list"></div>
+                        </div>
+                        <div class="panel_bottom"></div>
+                      </div>
+                    </div>
+                    <div class="page" id="subpage-info">
+                      <div style="margin-left:10px;" >
+                        <div id="subpage-info_info">
+                          <div><img src="./img/h3_result_3.gif"  alt="設定" title="設定" /></div>
+                          <div class="wl" style="width:620px;"></div>
+                          <div id="subpage-info_info-values" style="margin: 10px 0px 15px 0px;">
+                          </div>
+                        </div>
+
+                        <div><img src="./img/h3_result_4.gif"  alt="エージェント" title="エージェント" /></div>
+                        <div class="wl" style="width:620px;"></div>
+                      </div>
+                      <div id="subpage-info_as">
+                          <div class="panel_300" style="float:left;">
+                             <div class="panel_top"></div>
+                             <div class="panel_middle" >
+                               <div style="padding-left:10px">
+                                 <div id="subpage-info_as__list" class="table panel" ></div>
+                               </div>
+                             </div>
+                             <div class="panel_bottom"></div>
+                          </div>
+                          <div class="panel_300" style="float:right;">
+                             <div class="panel_top"></div>
+                             <div class="panel_middle"  >
+                               <div id="subpage-info_as__editor" class="agent-property-editor"></div>
+                             </div>
+                             <div class="panel_bottom"></div>
+                          </div>
+                          <div class="breaker"></div>
+                      </div>
+                    </div>
+                    <div class="page" id="subpage-log"  style="margin-left:10px;" >
+                      <div style="width:620px;">
+                        <div style="float: left;">
+                          <div><img src="./img/h3_result_5.gif"  alt="ログ" title="ログ" /></div>
+                          <div class="wl" style="width:450px;"></div>
+                        </div>
+                        <div style="float: right;">
+                          <div id="subpage-log__update" class="button" style="margin-right:0px;"></div>
+                        </div>
+                        <div class="breaker"></div>
+                      </div>
+                      <div id="subpage-log_log" class="log" >
+                      </div>
+                    </div>
+                    <div class="page" id="subpage-graph"  style="margin-left:10px;" >
+                      <div style="width:620px;">
+                        <div><img src="./img/h3_result_6.gif"  alt="グラフの表示設定" title="グラフの表示設定" /></div>
+                        <div class="wl" style="width:620px;"></div>
+                        <div class="desc" style="margin-top:10px;" >
+                           ※ローソク足チャートで表示するグラフを設定します。
+                        </div>
+                        <div id="subpage-graph_list" ></div>
+                      </div>
+                    </div>
+                </div>
+                <div class="breaker"></div>
+             </div>
+             <div class="panel_bottom"></div>
+            </div>
+          </div>
+
+          <!-- 自動取引 - 設定 -->
+          <div class="page" id="page-rt-setting"  style="margin-left:10px;margin-top:10px;">
+            <div style="margin-left:9px;">
+              <div id="rt-setting__ok" class="button"></div>
+              <div id="rt-setting_msg" class="page_msg"></div>
+              <div class="breaker"></div>
+            </div>
+            <div class="separator" style="width:780px;margin-left:10px;"></div>
+
+            <div style="margin-left:10px;">
+              <div style="margin-top:20px;" ><img src="./img/h3_rt-setting_0.gif"  alt="自動取引の設定" title="自動取引の設定" /></div>
+              <div class="wl" style="margin-right:10px;width:780px;"></div>
+              <div style="margin: 10px 0px 0px 20px;">
+                <form  id="rt-setting_form" name="rt-setting_form" action="javascript:void(0);" >
+                  <input type="checkbox"  alt="自動取引を行う"  id="rt-setting_trade-enable"
+                    name="rt-setting_trade-enable"  style="height:12px;vertical-align:middle;" />
+                  <label for="rt-setting_trade-enable" title="自動取引を行う"  accesskey="R"
+                    style="padding-left:5px;color:#383835;line-height:12px;height:12px;vertical-align:middle;font-size:12px;">
+                    自動取引を行う
+                  </label>
+                </form>
+                <div class="desc" style="margin-top:10px;" >
+                   ※チェックをはずすと取引が強制的に停止されます。
+                </div>
+              </div>
+            </div>
+
+             <div style="margin-left:10px;margin-bottom:10px;">
+              <div style="margin-top:30px;" ><img src="./img/h3_rt-setting_1.gif"  alt="エージェント" title="エージェント" /></div>
+              <div class="wl" style="margin-right:10px;width:780px;"></div>
+              <div class="desc" style="margin-top:10px;" >※自動取引で動作させるエージェントを選択します。</div>
+            </div>
+				    <div id="rt-setting_as" >
+				      <div style="margin-left:9px;">
+                <div id="rt-setting_as__add" class="button"></div>
+                <div id="rt-setting_as__remove" class="button"></div>
+                <div id="rt-setting_as__msg" class="agent-selector-msg"></div>
+                <div class="breaker"></div>
+              </div>
+              <div class="panel_380" style="float:left;">
+               <div class="panel_top"></div>
+               <div class="panel_middle" >
+                 <div style="padding-left:10px">
+                   <div id="rt-setting_as__list" class="table panel" ></div>
+                 </div>
+               </div>
+               <div class="panel_bottom"></div>
+              </div>
+              <div class="panel_380" style="float:right;">
+               <div class="panel_top"></div>
+               <div class="panel_middle"  >
+                 <div id="rt-setting_as__editor" class="agent-property-editor"></div>
+               </div>
+               <div class="panel_bottom"></div>
+              </div>
+				      <div class="breaker"></div>
+				    </div>
+          </div>
+
+          <!-- エージェント - 新規作成/編集 -->
+          <div class="page" id="page-agent-edit" style="margin-left:10px;margin-top:10px;">
+            <div id="agent_edit_desc" class="desc" style="margin:10px;clear:both;" >
+            </div>
+            <div style="float:left;">
+              <div style="margin-left:9px;">
+                <div id="agent-edit_add" class="button"></div>
+                <div id="agent-edit_mkcol" class="button"></div>
+                <div id="agent-edit_rename" class="button"></div>
+                <div id="agent-edit_remove" class="button"></div>
+                <div class="breaker"></div>
+              </div>
+              <div class="panel_260">
+                 <div class="panel_top"></div>
+                 <div class="panel_middle">
+                   <div style="padding-left:10px;">
+                   <div id="agent-file-list" class="table panel" style="padding-top:5px;"></div>
+                   </div>
+                 </div>
+                 <div class="panel_bottom"></div>
+              </div>
+            </div>
+            
+             <div style="float:right;">
+              <div style="margin-left:10px;">
+                <!-- 
+                <div>
+                   <div style="float: left;width:370px;">
+                    <div id="agent-editor-file-name">-</div>
+                    <div class="wl" style="margin-right:10px;width:370px;"></div>
+                  </div>
+                  <div id="agent-edit_save" class="button" style="margin-left:10px;" ></div>
+                  <div class="breaker"></div>
+                </div>
+                 -->
+                <div id="agent_edit_msg" class="agent_edit_msg" >
+                </div>
+              </div>
+              
+              <div class="panel_500">
+                 <div class="panel_top"></div>
+                 <div class="panel_middle"  >               
+                   <div style="padding-left:10px" id="agent-editor-body" >   
+                     <textarea id="agent_editor" 
+                       style="width:498px;height:500px;">
+                     </textarea>
+                   </div>
+                 </div>
+                 <div class="panel_bottom"></div>
+              </div>
+             </div>
+             <div class="breaker"></div>
+          </div>
+
+          <!-- バックテスト - 新規作成 -->
+          <div class="page" id="page-bt-create" style="margin-left:10px;margin-top:10px;">
+            <div style="margin-left:9px;">
+              <div id="bt-create__start" class="button"></div>
+              <div id="bt-create_msg" class="page_msg"></div>
+              <div class="breaker"></div>
+            </div>
+            <div class="separator" style="width:780px;margin-left:10px;"></div>
+
+            <div style="margin-left:10px;">
+              <div style="margin-top:20px;" ><img src="./img/h3_bt-create_0.gif"  alt="テストの名前とメモ" title="テストの名前とメモ" /></div>
+              <div class="wl" style="margin-right:10px;width:780px;"></div>
+              <div class="desc" style="margin-top:10px;" >※バックテストの名前を設定します。メモとして任意のテキストを残すこともできます。</div>
+              <div style="margin: 10px 0px 0px 0px;">
+                <form  id="bt-create_form"  name="bt-create_form" action="javascript:void(0);" >
+                  <div style="width:700px;margin-bottom:10px;">
+                    <div style="float:left;width:50px;">名前</div>
+                    <div style="float:left">
+                      <input type="text"   id="bt-create_name"
+                        name="bt-create_name"  style="width:600px;" />
+                    </div>
+                    <div class="breaker"></div>
+                  </div>
+                  <div style="width:700px">
+                    <div style="float:left;width:50px;">メモ</div>
+                    <div style="float:left">
+                      <textarea rows="10" id="bt-create_memo" name="bt-create_memo"  style="width:600px;" ></textarea>
+                    </div>
+                    <div class="breaker"></div>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <div style="margin-left:10px;">
+              <div style="margin-top:20px;" ><img src="./img/h3_bt-create_1.gif"  alt="期間" title="期間" /></div>
+              <div class="wl" style="margin-right:10px;width:780px;"></div>
+              <div class="desc" style="margin:10px 0px 0px 0px;" >
+                 ※テストする期間を設定します。日付を直接入力するか、カレンダーから選択して下さい。<br/>
+                 ※テスト用データの収集ができている日は、カレンダーが「緑」の背景になります。
+              </div>
+              <div>
+                <div style="float:left;width:390px;margin-top:10px;">
+                   <div id="bt-create_range-start"  class="yui-skin-sam"></div>
+                   <div id="bt-create_range-end"  class="yui-skin-sam"></div>
+                   <div class="breaker"></div>
+                </div>
+                <div class="panel_380" style="float:left;">
+                  <div class="panel_top"></div>
+                  <div class="panel_middle" >
+                    <div style="padding-left:10px">
+                      <div id="bt-create__range-summary" class="panel" >
+                          ※開始日、終了日を選択して下さい。
+                      </div>
+                    </div>
+                  </div>
+                  <div class="panel_bottom"></div>
+                </div>
+                <div class="breaker"></div>
+              </div>
+            </div>
+
+            <div style="margin-left:10px;margin-bottom:10px;">
+              <div style="margin-top:30px;" ><img src="./img/h3_bt-create_2.gif"  alt="エージェント" title="エージェント" /></div>
+              <div class="wl" style="margin-right:10px;width:780px;"></div>
+              <div class="desc" style="margin-top:10px;" >※バックテストで動作させるエージェントを選択します。</div>
+            </div>
+            <div id="bt-create_as" >
+              <div style="margin-left:9px;">
+                <div id="bt-create_as__add" class="button"></div>
+                <div id="bt-create_as__remove" class="button"></div>
+                <div id="bt-create_as__msg" class="agent-selector-msg"></div>
+                <div class="breaker"></div>
+              </div>
+              <div class="panel_380" style="float:left;">
+               <div class="panel_top"></div>
+               <div class="panel_middle" >
+                 <div style="padding-left:10px">
+                   <div id="bt-create_as__list" class="table panel" ></div>
+                 </div>
+               </div>
+               <div class="panel_bottom"></div>
+              </div>
+              <div class="panel_380" style="float:right;">
+               <div class="panel_top"></div>
+               <div class="panel_middle"  >
+                 <div id="bt-create_as__editor" class="agent-property-editor"></div>
+               </div>
+               <div class="panel_bottom"></div>
+              </div>
+              <div class="breaker"></div>
+            </div>
+          </div>
+
+        </div>
+        <div class="breaker"></div>
+      </div>
+      <div id="footer">
+        <!-- フッタ -->
+        <a href="http://unageanu.sakura.ne.jp/jiji/?page=usage" target="_blank">使い方</a>
+        <span class="separator">|</span> 
+        <a href="http://unageanu.sakura.ne.jp/jiji/?page=agent" target="_blank">エージェント作成ガイド</a>
+        <span class="separator">|</span> 
+        <a href="http://unageanu.sakura.ne.jp/jiji/rdoc/" target="_blank">APIリファレンス</a>
+        <span class="separator">|</span> 
+        <a href="http://unageanu.sakura.ne.jp/jiji/?page=about&param=a_about_5" target="_blank">コンタクト</a>
+      </div>
+    </div>
+    <div id="margin_bottom">
+      <!-- 背景の陰のグラデーションを張るスペース -->
+    </div>
+  </div>
+  <div id="debug"></div>
+  </body>
+</html>
