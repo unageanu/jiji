@@ -85,13 +85,15 @@ package fx.chart.ui {
     
           var sprite:Sprite = new Sprite();
           var g:Graphics =sprite.graphics;
-    
-          var start:int = model.positionManager.fromDate( Math.ceil(d.date / model.scaleTime) * model.scaleTime );
+           
+          // ポジション保有時の座標。表示範囲外の場合 < 0
+          var start:int = model.positionManager.fromDate( Math.floor(d.date / model.scaleTime) * model.scaleTime );
+          // ポジション決済時の座標。表示範囲外の場合  end+trade.left > trade.right
           var end:Number = 0;
           if ( d.fix_date ) {
-            end = model.positionManager.fromDate( Math.ceil(d.fix_date / model.scaleTime) * model.scaleTime );
+            end = model.positionManager.fromDate( Math.floor(d.fix_date / model.scaleTime) * model.scaleTime );
           }
-          var w:int = end - start + 4 < trade.width ? end - start + 4 : trade.width ;
+          var w:int = end - start + 4 < trade.width ? end - start + 4 : trade.width ; // 横幅。表示範囲より広い場合、表示幅
           var color:uint = getTradeColor(d);
     
           // 開始円
@@ -102,34 +104,39 @@ package fx.chart.ui {
             img.y = 0;
             sprite.addChild(img);
           }
-    
-          // 線
-          var abs:Number = Math.abs( d.profit_or_loss);
-          var left:int = NaN;
-          if ( d.fix_date && (end+trade.left < trade.right) ) {
-            if ( start > 0) {
-              left = w-2;
-            } else {
-              left = end;
-            }
-          } else {
-            if ( start > 0) {
-              left = trade.width - start;
-            } else {
-              left = trade.width-1;
-            }
-          }
-          g.lineStyle( 0, color, 1,
-              true, LineScaleMode.NONE, CapsStyle.NONE, JointStyle.BEVEL );
-          g.moveTo( start > 3 ? 2 : 0 , 2 );
-          g.lineTo( left, 2 );
-    
-          // 終了円
-          if ( d.fix_date && trade.left + end <= trade.right -3 ) {
-            img = getTradeBitmap( d );
-            img.x = start > 0 ? w-4 : end-3;
-            img.y = 0;
-            sprite.addChild(img);
+          
+          // 開始と終了が同じ位置にある場合は、線と終了点は描画しない。
+          if ( w-4 > 0 ) {
+              // 線
+              var abs:Number = Math.abs( d.profit_or_loss);
+              var left:int = NaN;
+              if ( d.fix_date && (end+trade.left < trade.right) ) {
+                // 表示範囲内で決済済み
+                if ( start > 0) {
+                  left = w-4;
+                } else {
+                  left = end;
+                }
+              } else {
+                if ( start > 0) {
+                  left = trade.width - start;
+                } else {
+                  left = trade.width-1;
+                }
+              }
+              g.lineStyle( 0, color, 1,
+                  true, LineScaleMode.NONE, CapsStyle.NONE, JointStyle.BEVEL );
+              g.moveTo( start > 3 ? 4 : 0 , 2 );
+              g.lineTo( left, 2 );
+        
+              // 終了円
+              // 約定済みで表示金以内に値がある場合描画
+              if ( d.fix_date && trade.left + end <= trade.right -3 ) {
+                img = getTradeBitmap( d );
+                img.x = start > 0 ? w-4 : end-3;
+                img.y = 0;
+                sprite.addChild(img);
+              }
           }
           
           // あたり判定を行うためのスプライト
@@ -143,14 +150,17 @@ package fx.chart.ui {
           overSpace.visible = false;
           sprite.hitArea = overSpace;
           
+          sprite.alpha = 0.65
           sprite.x = start > 0 ? start+trade.left-2 : trade.left + 1;
           sprite.y = y ;
           sprite.addEventListener(MouseEvent.MOUSE_OVER, function(ev:flash.events.MouseEvent):void {
+            sprite.alpha = 1;
             rc.layers.setWindowVisible({"trade":true});
             detailWindow.update( d, ev );
           });
           sprite.addEventListener(MouseEvent.MOUSE_OUT,  function(ev:flash.events.MouseEvent):void {
-            rc.layers.setWindowVisible({"info":true});
+              sprite.alpha = 0.65;
+              rc.layers.setWindowVisible({"info":true});
           });
           trades.addChild( overSpace );
           trades.addChild( sprite );

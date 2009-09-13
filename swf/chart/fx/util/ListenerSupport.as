@@ -30,10 +30,10 @@ package fx.util {
     public function removeEventListener( type:String,
       listener:Function ):void {
       var list:Array = listeners[type];
-      if ( !list ) {
+      if ( list ) {
         var tmp:Array = [];
         list.forEach( function(item:*,i:int,arr:Array):void { 
-            if ( item.listener != listener ) tmp.add( item );
+            if ( item.listener != listener ) tmp.push( item );
         } );
         listeners[type] = tmp;
       }

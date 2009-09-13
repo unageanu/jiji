@@ -79,6 +79,7 @@ package fx.util {
 
     /**
      * 日時に対するx座標(ローソクの中心となる座標)の位置を得る。
+     * 正規化済み(Math.floor(data.getTime()/1000/scaleTime)*scaleTime)した値を指定すること!
      */
     public function fromDate( date:Number ):int {
       return 6 * (( date - start ) / scale) + 6 ;

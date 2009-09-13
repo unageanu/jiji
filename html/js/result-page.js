@@ -444,16 +444,22 @@ fx.ui.TradeListTable.prototype = util.merge( util.BasicTable, {
       {key:"trader", label:columnTemplate.trader, sortable:true, resizeable:true,width:50,formatter: function( cell, record, column, data){
         cell.innerHTML =  data ? data.escapeHTML() : "-";
       } },
-      {key:"date", label:columnTemplate.date, sortable:true, resizeable:true,width:118, formatter: function( cell, record, column, data){
+      {key:"date", label:columnTemplate.date, sortable:true, resizeable:true,width:133, formatter: function( cell, record, column, data){
           var d = new Date(data*1000);
-          cell.innerHTML =  util.formatDate(d);
-          //cell.innerHTML =  '<a href="javascript:util.getSwf(\'chart\').setDate( ' + data + ' );scrollTo( 0, 0 );">' + util.formatDate(d) + '</a>';
+          cell.innerHTML = fx.template.Templates.submenu.trade.gotoChart.evaluate( {
+            "goto": fx.template.Templates.common.gotoChart,
+            data : data,
+            dateString : util.formatDate(d)
+          }); 
       } },
-      {key:"fix_date", label:columnTemplate.fixDate, sortable:true, resizeable:true,width:118, formatter: function( cell, record, column, data){
+      {key:"fix_date", label:columnTemplate.fixDate, sortable:true, resizeable:true,width:133, formatter: function( cell, record, column, data){
         if (data) {
           var d = new Date(data*1000);
-          cell.innerHTML =  util.formatDate(d);
-          //cell.innerHTML =  '<a href="javascript:util.getSwf(\'chart\').setDate( ' + data + ' );scrollTo( 0, 0 );">' + util.formatDate(d) + '</a>';
+          cell.innerHTML = fx.template.Templates.submenu.trade.gotoChart.evaluate( {
+            "goto": fx.template.Templates.common.gotoChart,
+            data : data,
+            dateString : util.formatDate(d)
+          }); 
         } else {
           cell.innerHTML =  "-";
         }

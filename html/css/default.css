@@ -520,6 +520,17 @@ span.draw {
   color : #978CD0;
 }
 
+div.goto_chart * {
+  vertical-align: bottom;
+  line-height: 100%;
+}
+div.goto_chart a {
+  padding-right: 2px;
+}
+div.goto_chart img {
+  font-size: 0px;
+}
+
 /** log  --------------------------------------------------------------------- */
 div.log {
   overflow:scroll;

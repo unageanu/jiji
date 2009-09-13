@@ -61,6 +61,9 @@ fx.template.Templates = {
       file: "ファイル",
       directory: "ディレクトリ"
     },
+    gotoChart : '<img src="./img/goto.gif" alt="移動" title="チャートをこの日時までスクロール"'  +
+      '         onmouseover="this.src=\'./img/goto_o.gif\'" '  +
+      '         onmouseout="this.src=\'./img/goto.gif\'" />',
     errorMsg : {
       notFound: new Template("#{name}が見つかりませんでしました。"),
       alreadyExist: "名前が重複しています。",
@@ -346,7 +349,13 @@ fx.template.Templates = {
           '   <div class="breaker"></div></div>' +
           '</div>'),
       pair : new Template (
-          '<tr><td class="label small" >#{pair}</td><td class="value">#{value}</td></tr>' )
+          '<tr><td class="label small" >#{pair}</td><td class="value">#{value}</td></tr>' ),
+      gotoChart : new Template(
+          '<div class="goto_chart">' +
+          '  <a href="javascript:util.getSwf(\'chart\').setDate( #{data} );">#{goto}</a>' +
+          '  <span class="date">#{dateString}</span>' +
+          '</div>'
+      )
     },
     graph : {
       noAgent : '<div style="margin:10px 0px 0px 0px;">( グラフはありません。)</div>',

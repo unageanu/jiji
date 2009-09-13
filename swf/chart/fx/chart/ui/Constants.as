@@ -39,15 +39,15 @@ package fx.chart.ui {
     /**
      * 取引:+
      */
-    public static const COLOR_UP:uint = 0xFE4B7E;//0xD65B7E;
+    public static const COLOR_UP:uint = 0xFE4072;//0xD65B7E;
     /**
      * 取引:-
      */
-    public static const COLOR_DOWN:uint = 0x4B7EFF;//0x78A0D9;
+    public static const COLOR_DOWN:uint = 0x4072FF;//0x78A0D9;
     /**
      * 取引:同じ
      */
-    public static const COLOR_DRAW:uint = 0x978CD0;//0x8C83c2;
+    public static const COLOR_DRAW:uint = 0x9283C5;//0x8C83c2;
 
     public static const COLOR_UP_3:uint = 0xE35080;
     public static const COLOR_UP_2:uint = 0xC46F8A;

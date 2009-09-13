@@ -85,7 +85,7 @@ package fx.chart.model {
      * 日時を設定する
      */
     public function set date(newData:Date):void {
-      var tmp:Number = int(newData.getTime()/1000/scaleTime)*scaleTime;
+      var tmp:Number = Math.floor(newData.getTime()/1000/scaleTime)*scaleTime;
       if ( scaleTime ){
         var start:Number = tmp-COUNT/2*scaleTime;
         var end:Number = tmp+COUNT/2*scaleTime;

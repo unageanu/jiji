@@ -31,7 +31,7 @@ package fx.chart {
     private var rc:RenderingContext;
     private var autoUpdate:AutoUpdate;
     private var check:CheckBox;
-
+  
     public function Chart(canvas:UIComponent){
     
       model = new Model();
@@ -94,7 +94,7 @@ package fx.chart {
             registExternalInterface();
             ExternalInterface.call( "onChartLoaded" );
         });
-
+        
       } catch ( ex:Error ) {
         //log(ex.message + ":" + ex.getStackTrace());
       }
@@ -105,10 +105,16 @@ package fx.chart {
     private function registExternalInterface():void {
         ExternalInterface.addCallback("initializeChart", this.initializeChart );
         ExternalInterface.addCallback("setDate", function( date:Number ):void {
-            ctrl.changeDate( Util.createDate(date) );
-            pointer.setPosition( 
-                    rc.stage.candle.left + (rc.stage.candle.width/2) + 11,
-                    rc.stage.candle.bottom - (rc.stage.candle.height/4));
+            var d:Date = Util.createDate(date);
+            var f:Function = function():void {
+                pointer.setPosition( 
+                         model.positionManager.fromDate( Math.floor( date / model.scaleTime) * model.scaleTime ) + rc.stage.candle.left,
+                         rc.stage.candle.bottom - (rc.stage.candle.height/4));
+                ctrl.removeEventListener(  fx.chart.ctrl.Event.CANDLE_DATA_CHANGED, arguments.callee );
+             }
+            ctrl.addEventListener( fx.chart.ctrl.Event.CANDLE_DATA_CHANGED, f);
+            ctrl.changeDate( d );
+            scroll.update();
         } );
         ExternalInterface.addCallback("setGraphVisible", this.setGraphVisible );
         ExternalInterface.addCallback("setGraphColors", this.setGraphColors );

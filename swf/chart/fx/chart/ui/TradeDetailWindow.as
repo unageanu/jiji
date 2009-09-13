@@ -113,7 +113,7 @@ package fx.chart.ui {
         buy.visible = true;
       }
       textFields["trader"].text = d["trader"] ? d["trader"] : "-";
-      textFields["info"].text = " / " + d["pair"] + " / " + int( d["price"] / d["rate"]);
+      textFields["info"].text = " / " + d["pair"] + " / " + Math.ceil( d["price"] / (d["rate"] * 1000) )*1000;
       textFields["start"].text = d["rate"] + " " + formatDate( d["date"] );
       if ( d["fix_rate"] && d["fix_date"] ) {
         textFields["end"].text = d["fix_rate"] + " " + formatDate( d["fix_date"] );

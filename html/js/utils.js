@@ -446,7 +446,7 @@ util.formatDate = function( d ) {
 util.fillZero = function( number, size ) {
   var s = number != 0 ? Math.log( number ) * Math.LOG10E : 0;
   for( i=1,n=size-s,str="";i<n;i++ ) str += "0";
-  return str+number;
+  return str+number.toString();
 }
 
 /**
