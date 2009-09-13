@@ -105,8 +105,8 @@ package fx.chart.ui {
             sprite.addChild(img);
           }
           
-          // 開始と終了が同じ位置にある場合は、線と終了点は描画しない。
-          if ( w-4 > 0 ) {
+          // 決済済みで且つ開始と終了が同じ位置にある 場合は、線と終了点は描画しない。
+          if ( !(d.fix_date  && w-4 <= 0) ) {
               // 線
               var abs:Number = Math.abs( d.profit_or_loss);
               var left:int = NaN;
@@ -115,7 +115,7 @@ package fx.chart.ui {
                 if ( start > 0) {
                   left = w-4;
                 } else {
-                  left = end;
+                  left = end-4;
                 }
               } else {
                 if ( start > 0) {
@@ -130,7 +130,7 @@ package fx.chart.ui {
               g.lineTo( left, 2 );
         
               // 終了円
-              // 約定済みで表示金以内に値がある場合描画
+              // 約定済みで表示範囲内に値がある場合描画
               if ( d.fix_date && trade.left + end <= trade.right -3 ) {
                 img = getTradeBitmap( d );
                 img.x = start > 0 ? w-4 : end-3;
