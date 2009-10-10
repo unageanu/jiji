@@ -1,6 +1,6 @@
 Gem::Specification.new do |spec|
   spec.name = "jiji"
-  spec.version = "1.2.4"
+  spec.version = "1.2.5"
   spec.summary = "open and free fx auto trade system."
   spec.author = "Masaya Yamauchi"
   spec.email = "y-masaya@red.hot.co.jp"
@@ -419,6 +419,7 @@ Gem::Specification.new do |spec|
     "lib/jiji/util/iterator.rb",
     "lib/jiji/util/json_broker.rb",
     "lib/jiji/util/json_rpc_requestor.rb",
+    "lib/jiji/util/rate_data_importer.rb",
     "lib/jiji/util/synchronize_interceptor.rb",
     "lib/jiji/util/thread_use_generator.rb",
     "lib/jiji/util/util.rb",

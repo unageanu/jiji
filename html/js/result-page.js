@@ -710,7 +710,7 @@ fx.ui.pages.GraphSettingResultPage.prototype = {
                 // グラフに転送
                 util.getSwf("chart").setGraphVisible( [info[0],info[1]], input.checked ? true : false );
                 // 設定を記録
-                self.updateSetting( [info[0],info[1]], {visible: input.checked ? true : false } );
+                self.updateSetting( info[0],info[1], {visible: input.checked ? true : false } );
               };
               // 色
               var index = i;
@@ -720,7 +720,7 @@ fx.ui.pages.GraphSettingResultPage.prototype = {
                   colors.push( self.pickers[index][j].get());
                 }
                 util.getSwf("chart").setGraphColors( [info[0],info[1]], colors );
-                self.updateSetting( [info[0],info[1]], {colors: colors } );
+                self.updateSetting( info[0],info[1], {colors: colors } );
               };
               for ( var k = 0; k < ( info[2].column_count || 1 ); k++ ) {
                 var color = info[2].colors && info[2].colors[k] ? info[2].colors[k] : "#557777";
@@ -737,9 +737,9 @@ fx.ui.pages.GraphSettingResultPage.prototype = {
   /**
    * 設定値を記録する
    */
-  updateSetting: function( target, properties ) {
+  updateSetting: function( target, name, properties ) {
     this.outputServiceStub.set_properties(
-        this.currentProcessId, target, properties, null, null ); // TODO
+        this.currentProcessId, target, name, properties, null, null ); // TODO
   },
   /**
    * 出力を削除する。
