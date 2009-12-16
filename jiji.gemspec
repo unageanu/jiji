@@ -1,6 +1,6 @@
 Gem::Specification.new do |spec|
   spec.name = "jiji"
-  spec.version = "1.2.6"
+  spec.version = "1.2.7"
   spec.summary = "open and free fx auto trade system."
   spec.author = "Masaya Yamauchi"
   spec.email = "y-masaya@red.hot.co.jp"
@@ -839,6 +839,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency('needle', '= 1.3.0')
   spec.add_dependency('ruby-json', '= 1.1.2')
   spec.add_dependency('uuidtools', '= 2.0.0')
-  spec.add_dependency('clickclient_scrap', '>= 0.1.7')
+  spec.add_dependency('clickclient_scrap', '>= 0.1.8')
   spec.add_dependency('sbiclient', '>= 0.1.0')
 end
