@@ -40,8 +40,13 @@ module JIJI
             server_logger.info( "plugin loaded. plugin_path=#{plugin}" ) if server_logger
             @loaded << plugin
           rescue Exception
-            server_logger.error( "plugin load failed. plugin_path=#{plugin}" )  if server_logger
-            server_logger.error($!)  if server_logger
+            if server_logger
+              server_logger.error( "plugin load failed. plugin_path=#{plugin}" ) 
+              server_logger.error($!)  
+            else
+              puts "plugin load failed. plugin_path=#{plugin}"
+              puts ([$!.to_s] + $!.backtrace).join("\n      ")
+            end
           end
         }
       end

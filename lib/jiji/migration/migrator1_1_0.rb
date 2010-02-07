@@ -16,7 +16,7 @@ module JIJI
         tmp = key_to_sym(YAML.load_file(conf_file))
         
         # 証券会社アクセス関連の設定値を置換
-        if( tmp[:securities] ) 
+        if( tmp[:securities] && tmp[:securities][:account]  ) 
           old = tmp[:securities]
           tmp[:securities] = {
             :type=>:click_securities_demo,
